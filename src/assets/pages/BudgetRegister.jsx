@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import BudgetForm from "../components/budgetForm";
+import BudgetCard from "../components/BudgetCard";
 
 
 function BudgetRegister(){
@@ -27,12 +28,23 @@ function BudgetRegister(){
         const formProps = Object.fromEntries(formData);
         SetBudgetCard([...BudgetCards, formProps])
         e.target.reset()
-      }
+    }
+
+    const deleteBudgetCard=(bCard)=>{
+        console.log(bCard)
+        const newBudgetCard= BudgetCards.filter((el)=>{return !(el===bCard) });
+        console.log(newBudgetCard)
+        SetBudgetCard(newBudgetCard)
+    }
+
+    
     
     return(
-        <BudgetForm subFunc={handleSubmit}>
-            
-        </BudgetForm>
+        <div>
+            <BudgetForm subFunc={handleSubmit}></BudgetForm>
+            {BudgetCards.map((budCard)=>(<BudgetCard deletFunc={deleteBudgetCard} bCard={budCard}></BudgetCard>))}
+        </div>
+      
     )
 }
 

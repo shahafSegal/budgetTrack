@@ -1,7 +1,7 @@
 import { useState } from "react";
 function getOption(anyStr){
     return(
-        <option value={anyStr}>{anyStr}</option>
+        <option  value={anyStr}>{anyStr}</option>
     )
 }
 
@@ -17,16 +17,16 @@ function SpecSelect()
     }
 
     if(selectedType=="Expense"){
-        newSelect= expenseCategories.map((cat)=>{return getOption(cat)})
+        newSelect= expenseCategories.map((cat,ind)=>{return getOption(cat,ind)})
     }
     if(selectedType=="Income"){
-        newSelect= incomeCategories.map((cat)=>{return getOption(cat)})
+        newSelect= incomeCategories.map((cat,ind)=>{return getOption(cat,ind)})
     }
     
     return(
         <>
             <label>Type:</label>
-            <select name="Type" id="typeSel" onChange={changeType} value={selectedType}>
+            <select name="type" id="typeSel" onChange={changeType} value={selectedType}>
                 <option value='Expense'>Expense</option>
                 <option value='Income'>Income</option>
             </select>
