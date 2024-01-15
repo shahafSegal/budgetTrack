@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './App.css'
-import BudgetForm from './assets/pages/budgetForm'
+import BudgetRegister from './assets/pages/BudgetRegister'
 
 function App() {
 
   return (
     <>
-      <BudgetForm></BudgetForm>
+      <BudgetRegister></BudgetRegister>
     </>
   )
 }
