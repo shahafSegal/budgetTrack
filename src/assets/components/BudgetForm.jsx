@@ -1,8 +1,8 @@
 import SpecSelect from "./SpecSelect";
 
-function BudgetForm(){
+function BudgetForm(props){
     return(
-     <>
+     <form onSubmit={(e)=>props.subFunc(e)}>
          <SpecSelect></SpecSelect> 
          <label>
              Specified transaction:
@@ -13,9 +13,8 @@ function BudgetForm(){
          </label>
          <button >submit</button>
  
-     </>
+     </form>
      )
- 
  }
  
  export default BudgetForm;
