@@ -1,0 +1,13 @@
+.budgetCard{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 1%;
+}
+
+.expense{
+    background-color: red;
+}
+.income{
+    background-color: green;
+}

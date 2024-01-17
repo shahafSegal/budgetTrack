@@ -1,0 +1,8 @@
+.revCardImage{
+    width: 20vh;
+    max-height: 20vh;
+
+}
+.revCard{
+    border: 1px solid yellow;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BudgetForm from "../components/budgetForm";
 import BudgetCard from "../components/BudgetCard";
-
+import "../styles/BudgetRegister.css"
 
 function BudgetRegister(){
     const[BudgetCards,SetBudgetCard]=useState([]);
