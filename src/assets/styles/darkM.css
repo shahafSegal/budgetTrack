@@ -13,6 +13,13 @@ body {
 }
 #root{
     min-height: 100vh;
+    min-width: 80vw;
+}
+form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 header {
