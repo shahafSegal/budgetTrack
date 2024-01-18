@@ -1,8 +1,16 @@
 .revCardImage{
-    width: 20vh;
-    max-height: 20vh;
+    max-width: 15vw;
+    max-height: 10vh;
 
 }
 .revCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border: 1px solid yellow;
+}
+.sideCard{
+    height: 20vh;
+    display: flex;
+    align-items: center;
 }

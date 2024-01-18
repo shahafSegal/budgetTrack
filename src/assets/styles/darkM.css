@@ -28,7 +28,7 @@ header {
 }
 
 section {
-    max-width: 600px;
+    max-width: 80vw;
     margin: 0 auto;
     background-color: #1e1e1e;
     padding: 20px;
