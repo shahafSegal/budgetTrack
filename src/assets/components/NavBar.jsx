@@ -24,7 +24,7 @@ function NavBar(props){
               </Nav.Link>
             </Nav>
             <Nav>
-            {userObj.loggedIn?<UserDropDown username={userObj.username} logOut={props.logOut}/>
+            {userObj.loggedIn?<UserDropDown username={userObj.email} logOut={props.logOut}/>
             :<Nav.Link as={NavLink} style={activeClass} to="/register">Register</Nav.Link>
             }
             </Nav>

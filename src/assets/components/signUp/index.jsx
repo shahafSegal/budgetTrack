@@ -1,13 +1,11 @@
 import { useState } from "react"
 
 export default function SignUp(props){
-    const [userNameVal,setUserNameVal]=useState("")
-    const changeUserName=(e)=>{setUserNameVal(e.target.value)}
     return(
-        <div className="logBox">
-            <label htmlFor="userName">
+        <form className="logBox" onSubmit={props.userLogin}>
+            <label htmlFor="userName" >
                 Username:
-                <input type="text" name="userName" value={userNameVal} onInput={changeUserName} />
+                <input type="text" name="email"/>
             </label>
             <label htmlFor="password">
                 password:
@@ -17,8 +15,9 @@ export default function SignUp(props){
                 repeat password:
                 <input type="password" name="repeatPass" />
             </label>
-            <button onClick={()=>{console.log(userNameVal); props.userLogin(userNameVal)}}>login</button>
+            <button>login</button>
+            {props.error?<h3>{props.error}</h3>:''}
 
-        </div>
+        </form>
     )
 }

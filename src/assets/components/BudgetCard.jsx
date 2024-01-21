@@ -8,7 +8,7 @@ function BudgetCard(props){
             <h2>title: {BCard.title} </h2>
             <h3>{BCard.type}: {BCard.categories}</h3>
             <h3>Amount:{isExpense?"-":''}{BCard.amount}</h3>
-            <button onClick={()=>props.deletFunc(BCard)}>Delete</button>
+            <button onClick={()=>props.deletFunc(BCard.id)}>Delete</button>
         </div>
        
     )

@@ -7,12 +7,17 @@ export default function UserRegister(props){
     const isLoggingIn=props.isLogin;
     const toggleLogin=props.togle;
     const userObj=props.usrObj;
-    
-    const toLogDiv=[isLoggingIn?<Login userLogin={props.usrLog}/>:<SignUp userLogin={props.usrLog}/>,<button onClick={toggleLogin}>{isLoggingIn?"don't have a user?":"already have a user?"}</button>]
+    const formSignUp=(e)=>{
+        e.preventDefault()
+        const fData=new FormData(e.target)
+        const formObj= Object.fromEntries(fData)
+        props.usrSign(formObj.email,formObj.password);
+    }
+    const toLogDiv=[isLoggingIn?<Login userLogin={formSignUp} error={userObj.error}/>:<SignUp error={userObj.error} userLogin={formSignUp}/>,<button onClick={toggleLogin}>{isLoggingIn?"don't have a user?":"already have a user?"}</button>]
     return(
         <div className="regForm">
             { 
-                userObj.loggedIn?<h1>"{userObj.username}" logged in</h1>:toLogDiv
+                userObj.loggedIn?<div><h1>{userObj.email}</h1><h2>Logged In</h2> </div>:toLogDiv
 
             }
             

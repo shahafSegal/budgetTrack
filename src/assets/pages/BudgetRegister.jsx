@@ -2,39 +2,41 @@ import { useEffect, useState } from "react";
 import BudgetForm from "../components/budgetForm";
 import BudgetCard from "../components/BudgetCard";
 import "../styles/BudgetRegister.css"
+import { db } from "../../config/firebaseconfig";
+import { addDoc, collection, deleteDoc, doc, getDocs} from "firebase/firestore";
 
 function BudgetRegister(){
-    const[BudgetCards,SetBudgetCard]=useState([]);
+    const[BudgetCards,SetBudgetCards]=useState([]);
+    const docRef=collection(db,"budgetData")
 
-    useEffect(
-        ()=>{
-            const BCardData=JSON.parse(localStorage.getItem("budgetCards"))
-            if(BCardData){
-                SetBudgetCard(BCardData)
-            }
+    useEffect(()=>{
+        initialBcards()
         },
         []
     )
 
-    useEffect(
-        ()=>{
-            localStorage.setItem("budgetCards",JSON.stringify(BudgetCards))
-        },
-        [BudgetCards]
-    )
-    const handleSubmit=(e)=>{
+
+    async function initialBcards(){
+        const docData=await getDocs(docRef)
+        const filteredDoc=docData.docs.map((fDoc)=>{
+            return {...fDoc.data(),id:fDoc.id}
+        })
+        SetBudgetCards(filteredDoc);
+    }
+
+    const handleSubmit=async(e)=>{
         e.preventDefault();
         const formData = new FormData(e.target);
         const formProps = Object.fromEntries(formData);
-        SetBudgetCard([...BudgetCards, formProps])
+        await addDoc(docRef,formProps);
         e.target.reset()
+        initialBcards()
     }
 
-    const deleteBudgetCard=(bCard)=>{
-        console.log(bCard)
-        const newBudgetCard= BudgetCards.filter((el)=>{return !(el===bCard) });
-        console.log(newBudgetCard)
-        SetBudgetCard(newBudgetCard)
+    const deleteBudgetCard=async (bCardId)=>{
+        const singleDocRef=doc(db,'budgetData',bCardId)
+        await deleteDoc(singleDocRef)
+        initialBcards()
     }
 
     
@@ -42,7 +44,10 @@ function BudgetRegister(){
     return(
         <div>
             <BudgetForm subFunc={handleSubmit}></BudgetForm>
-            {BudgetCards.map((budCard)=>(<BudgetCard deletFunc={deleteBudgetCard} bCard={budCard}></BudgetCard>))}
+            <div className="bCardContainer">
+                {BudgetCards.map((budCard)=>(<BudgetCard deletFunc={deleteBudgetCard} bCard={budCard}></BudgetCard>))}
+            </div>
+           
         </div>
       
     )
